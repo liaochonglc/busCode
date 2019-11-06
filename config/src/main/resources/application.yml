@@ -1,0 +1,28 @@
+server:
+  port: 8180
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          username:
+          password:
+          uri: https://github.com/liaochonglc/bus.git
+  rabbitmq:
+    host: 192.168.0.152
+    port: 5672
+    username: lichard
+    password: 123456
+#加入注册中心，实现高可用
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/,http://localhost:8082/eureka/
+      #这个是针对2.0左右版本的 说白一点就是暴露触发消息总线的地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
